@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Prüfkarte DRSA Bronze</title>
+
+    <meta charset="UTF-8">
+    <meta name="author" content="DLRG Ortsgruppe Aachen e.V.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="card.css">
+</head>
+<body>
+<div id="outline" style="position: absolute; top: 0; left: 0;">
+
+    <p style="position: absolute; top: 120.5mm; left: 54mm">DLRG Bezirk Aachen e.V.</p>
+    <p style="position: absolute; top: 128mm; left: 54mm">24.05.2022</p>
+    <p style="position: absolute; top: 128mm; left: 124mm">09/01000/151/148/22</p>
+
+    <span id="middle-line" style="display: inline-block; width: 185mm; border-bottom: 2px black solid; position: absolute; top: 147mm;left: 14mm"></span>
+
+    <div id="content" style="position: absolute; top: 12mm; left: 15mm;">
+
+        <div id="header" style="position: absolute; top: 0; left: 0; border: 1px green solid">
+            <img style="position: absolute; width: 32mm; top: 0; left: 151mm" src="static/Logo-WM-Schwarz.gif" />
+            <h1>Prüfungskarte für das Deutsche Rettungsschwimmabzeichen -Bronze- (DRSA Bronze)</h1>
+            <p style="padding-top: 4mm">
+                Ersterwerb/<span style="display:inline-block; width: 15mm;"></span>.Wiederholung (Ersterwerb Reg.Nr.:<span style="display:inline-block; width: 70mm;"></span>)
+            </p>
+            <span id="top-line" style="display: inline-block; width: 185mm; border-bottom: 2px black solid; position: relative; left: -1mm"></span>
+        </div>
+
+        <div id="personal-data" style="position: absolute; top: 16mm;">
+            <h6>1. Personalien des Bewerbers</h6>
+            <p>
+                Name, Vorname:&ensp;
+                <span style="display:inline-block; width: 75mm; border-bottom: 1px black dashed">
+                    {{json.name_last}}, {{json.name_first}}
+                </span>
+            </p>
+            <p>
+                Geburtsdatum:&ensp;
+                <span style="display:inline-block; width: 75mm; border-bottom: 1px black dashed">
+                    {{json.birth_date}}
+                </span>
+            </p>
+            <p>
+                Straße, PLZ, Ort:&ensp;
+                <span style="display:inline-block; width: 75mm; border-bottom: 1px black dashed">
+                    {{json.street}}, {{json.postcode}} {{json.city}}
+                </span>
+            </p>
+        </div>
+
+        <div id="consent" style="position: absolute; top: 54mm;">
+            <h6>2. Erklärung des Bewerbers und bei Minderjährigen zusätzlich des gesetzlichen Vertreters</h6>
+            <p>Ich erkenne die Vorgaben der Prüfungsordnung Schwimmen/Rettungsschwimmen für das DRSA Bronze an:</p>
+            <span style="display: inline-block; height: 8mm; width: 182mm; border-bottom: 1px black dashed;"></span>
+            <p>(Ort, Datum, Unterschrift)</p>
+            <br>
+            <p style="text-decoration: underline"><b>Bei Minderjährigen:</b></p>
+            <span style="display: inline-block; height: 8mm; width: 182mm; border-bottom: 1px black dashed;"></span>
+            <p>(Ort, Datum, Unterschrift)</p>
+        </div>
+
+        <div id="registration" style="position: absolute; top: 108.5mm;">
+            <span id="reg-line" style="display: inline-block; width: 185mm; border-bottom: 2px black solid; position: absolute; top: -2mm; left: -1mm"></span>
+            <h6>3. Ausfertigungsstelle:</h6>
+            <p style="position: absolute; top: 7.5mm">Eingetragen am:</p>
+            <p style="position: absolute; top: 7.5mm; left: 90mm">Nr:</p>
+
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+</body>
+</html>
