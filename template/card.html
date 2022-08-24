@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Prüfkarte DRSA {{person.rank}}</title>
+
+    <meta charset="UTF-8">
+    <meta name="author" content="DLRG Ortsgruppe Aachen e.V.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@page {
+    size: A4 portrait;
+    padding: 0;
+    margin: 0;
+}
+
+div, p, span, h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+    font-size: 8pt;
+    font-family: "DLRG Univers 55 Roman", sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border-bottom: 1px solid black;
+    border-spacing: 0;
+    padding-left: 1mm;
+}
+
+.middle {
+    border-spacing: 0;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.var {
+    font-family: "Arial", sans-serif;
+    font-size: 9pt;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#outline {
+    width:209.4mm;
+    height:296.4mm;
+}
+
+#content {
+    height: 272.4mm;
+    width: 183mm;
+}
+</style>
+
+</head>
+<body>
+<div id="outline" style="position: absolute; top: 0; left: 0;">
+
+<!--    <p style="position: absolute; top: 120.5mm; left: 54mm">DLRG Bezirk Aachen e.V.</p>-->
+<!--    <p style="position: absolute; top: 128mm; left: 54mm">24.05.2022</p>-->
+<!--    <p style="position: absolute; top: 128mm; left: 124mm">09/01000/151/148/22</p>-->
+
+    <span id="middle-line" style="display: inline-block; width: 185mm; border-bottom: 2px black solid; position: absolute; top: 147mm;left: 14mm"></span>
+
+    <div id="content" style="position: absolute; top: 12mm; left: 15mm;">
+
+        <div id="header" style="position: absolute; top: 0; left: 0;">
+            <img alt="branding" style="position: absolute; width: 32mm; top: 0; left: 151mm" src="static/Logo-WM-Schwarz.png" />
+            <h1>Prüfungskarte für das Deutsche Rettungsschwimmabzeichen &mdash;&ensp;{{person.rank}}&ensp;&mdash;&ensp;(DRSA {{person.rank}})</h1>
+            <p style="padding-top: 4mm; white-space: nowrap">
+                <span>Ersterwerb/</span>
+                <span style="display:inline-block; width: 10mm; text-align: center"><span class="var">{{person.repetition}}</span></span>
+                <span>. Wiederholung (Ersterwerb Reg.Nr.:</span>
+                <span style="display:inline-block; width: 70mm;">
+                    <span class="var">&ensp;{{person.first_registration}}</span>
+                </span>
+                <span>)</span>
+            </p>
+            <span id="top-line" style="display: inline-block; width: 185mm; border-bottom: 2px black solid; position: relative; left: -1mm"></span>
+        </div>
+
+        <div id="personal-data" style="position: absolute; top: 16mm;">
+            <h6>1. Personalien des Bewerbers</h6>
+            <p style="padding-top: 5mm">
+                <span>Name, Vorname:</span>
+                <span class="var" style="position: absolute; left: 24mm; display:inline-block; width: 110mm; border-bottom: 1px black dashed">
+                    &ensp;{{person.name_last}}, {{person.name_first}}
+                </span>
+                <span style="position: absolute;left: 150mm; white-space: nowrap;">
+                    <span>Kurs:</span>
+                    <span class="var" style="position: absolute; left: 12mm; display:inline-block; width: 20mm; border-bottom: 1px black dashed">
+                        &ensp;{{course.id}}
+                    </span>
+                </span>
+            </p>
+            <p style="padding-top: 5mm">
+                <span>Geburtsdatum:</span>
+                <span class="var" style="position: absolute; left: 24mm; display:inline-block; width: 35mm; border-bottom: 1px black dashed">
+                    &ensp;{{person.birth_date}}
+                </span>
+                <span style="position: absolute;left: 150mm; white-space: nowrap;">
+                    <span>Gebühr:</span>
+                    <span class="var" style="position: absolute; left: 12mm; display:inline-block; width: 20mm; border-bottom: 1px black dashed">
+                        &ensp;{{course.cost}}
+                    </span>
+                </span>
+            </p>
+            <p style="padding-top: 5mm; white-space: nowrap;">
+                Straße, PLZ, Ort:
+                <span class="var" style="position: absolute; left: 24mm; display:inline-block; width: 158mm; border-bottom: 1px black dashed">
+                    &ensp;{{person.street}}, {{person.postcode}} {{person.city}}
+                </span>
+            </p>
+        </div>
+
+        <div id="consent" style="position: absolute; top: 54mm;">
+            <h6>2. Erklärung des Bewerbers und bei Minderjährigen zusätzlich des gesetzlichen Vertreters</h6>
+            <p style="padding-top: 4mm">Ich erkenne die Vorgaben der Prüfungsordnung Schwimmen/Rettungsschwimmen für das DRSA {{person.rank}} an:</p>
+            <span style="display: inline-block; height: 8mm; width: 182mm; border-bottom: 1px black dashed;"></span>
+            <p>(Ort, Datum, Unterschrift des Bewerbers)</p>
+            <p style="padding-top:4mm; text-decoration:  underline">Bei Minderjährigen:</p>
+            <p>Ich bin damit einverstanden, dass mein Sohn / meine Tochter das DRSA {{person.rank}} erwirbt.</p>
+            <span style="display: inline-block; height: 8mm; width: 182mm; border-bottom: 1px black dashed;"></span>
+            <p>(Ort, Datum, Unterschrift des gesetzlichen Vertreters)</p>
+        </div>
+
+        <div id="registration" style="position: absolute; top: 108.5mm;">
+            <span id="reg-line" style="display: inline-block; width: 185mm; border-bottom: 2px black solid; position: absolute; top: -2mm; left: -1mm"></span>
+            <h6>3. Ausfertigungsstelle:</h6>
+            <p style="position: absolute; top: 7.5mm">Eingetragen am:</p>
+            <p style="position: absolute; top: 7.5mm; left: 90mm">Nr:</p>
+        </div>
+
+        <div id="requirements" style="position: absolute; top: 142mm;">
+            <p>
+                <span>Name, Vorname:<span class="var">&emsp;{{person.name_last}}, {{person.name_first}}</span></span>
+                <span style="position: absolute; left: 105mm">hat vom:<span class="var">&emsp;{{course.start}}</span></span>
+                <span style="position: absolute; left: 150mm">bis:&emsp;<span class="var">{{course.end}}</span></span>
+
+            </p>
+            <span style="display: inline-block; width: 185mm; border-bottom: 2px black solid; position: relative; left: -1mm"></span>
+            <p>an einem DRSA {{person.rank}} Lehrgang der DLRG Ortsgruppe Aachen e.V. regelmässig teilgenommen.</p>
+
+            <table style="position: absolute; left: -1mm; margin-top: 4mm; width: 185mm; border-top: 2px solid black; border-bottom: 2px solid black">
+                <tr style="border-bottom: 2px solid black;">
+                    <th style="width: 115mm; max-width: 115mm">Leistungen</th>
+                    <th class="middle" style="width: 27mm">Erfüllt am</th>
+                    <th>Ausbilder</th>
+                </tr>
+
+                {% for req in req %}
+                <tr >
+                    <td style="height: 2.2em">{{req}}</td>
+                    <td class="middle"></td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div id="confirmation" style="position: absolute; top: 251mm;">
+            <p style="font-size: 7pt">Ich bestätige, dass die Prüfungsleistungen nach den Vorgaben der Prüfungsordnung Schwimmen/Rettungsschwimmen der DLRG erfüllt wurden.</p>
+            <span class="var" style="padding-top: 6mm; display: inline-block; width: 182mm; border-bottom: 1px black dashed;">
+                &emsp;{{course.trainer}}
+            </span>
+            <p>
+                <span>Name und Nummer des Ausbilders</span>
+                <span style="position: absolute; left: 125mm;">Ort, Datum, Unterschrift des Ausbilders</span>
+            </p>
+        </div>
+
+        <div id="footer" style="position: absolute; top: 272mm">
+            <span style="font-size: 6pt; position: absolute; left: 0; white-space: nowrap">DLRG OG Aachen - Prüfungskarte - DRSA {{person.rank}}</span>
+            <span style="font-size: 6pt; position: absolute; left: 168mm; white-space: nowrap">Stand:&ensp;08/2022</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

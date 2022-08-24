@@ -1,0 +1,51 @@
+@page {
+    size: A4 portrait;
+    padding: 0;
+    margin: 0;
+}
+
+#outline {
+    width:209.4mm;
+    height:296.4mm;
+    /*border: 1px black solid;*/
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    margin: 0;
+    padding: 0;
+    /*border: 1px red solid;*/
+    height: 272.4mm;
+    width: 183mm;
+}
+
+div, p, span, h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+    font-size: 8pt;
+    font-family: "DLRG Univers 55 Roman", sans-serif;
+}
+
+.var {
+    font-family: "Arial", sans-serif;
+    font-size: 9pt;
+    font-weight: bold;
+    font-style: italic;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border-bottom: 1px solid black;
+    border-spacing: 0;
+    padding-left: 1mm;
+}
+
+.middle {
+    border-spacing: 0;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
