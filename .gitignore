@@ -1,3 +1,9 @@
 .idea
 
 *.pdf
+
+in/
+
+*.pyc
+
+instance/
