@@ -4,10 +4,9 @@ from weasyprint import HTML
 
 templateLoader = jinja2.FileSystemLoader(searchpath="./template/")
 templateEnv = jinja2.Environment(loader=templateLoader)
-TEMPLATE_FILE = "card.html"
-template = templateEnv.get_template(TEMPLATE_FILE)
 
-card = {
+
+exams = {
     "Bronze": [
         "200m Schwimmen in max 10min<br>"
             "(100m Bauchlage, 100m Rückenlage mit Grätschschwung ohne Armtätigkeit)",
@@ -74,8 +73,10 @@ def create_drsa_cards(data, course, target_path):
                  "time_water", "time_gather", "time_entrance", "contact", "card"]
     mail_data = []
 
+    template = templateEnv.get_template("exam_card.html")
+
     for person in data:
-        source_html = template.render(person=person, course=course, req=card[person["rank"]])
+        source_html = template.render(person=person, course=course, req=exams[person["rank"]])
         html = HTML(string=source_html, base_url="./")
 
         output_filename = "PK-DRSA-" + person["rank"] + "-" + course["id"] + "-" + person["name_first"] + person["name_last"] + ".pdf"
@@ -104,3 +105,22 @@ def create_drsa_cards(data, course, target_path):
         writer = csv.DictWriter(csv_out, fieldnames=mail_info, delimiter=';')
         writer.writeheader()
         writer.writerows(mail_data)
+
+
+def create_course_card():
+    course = {
+        "id": "TestCourse",
+        "pool": "Testhalle"
+    }
+    rank = "Bronze"
+
+    template = templateEnv.get_template("course_card.html")
+    source_html = template.render(course=course, req=exams[rank], rank=rank)
+    html = HTML(string=source_html, base_url="./")
+
+    output_filename = "RK-DRSA-" + rank + "-" + course["id"] + ".pdf"
+    html.write_pdf("{path}/{file}".format(path='./out', file=output_filename))
+
+
+if __name__ == "__main__":
+    create_course_card()
