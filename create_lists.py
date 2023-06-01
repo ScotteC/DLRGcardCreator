@@ -75,7 +75,7 @@ def create_stamp_list(data, target_path):
     #     path=target_path,
     #     year=today.year, month=today.month, day=today.day)
 
-    with open(out_nat, "w", newline='') as csv_national:
+    with open(out_nat, "w", newline='', encoding='utf_8_sig') as csv_national:
         writer = csv.DictWriter(csv_national, fieldnames=entry_info, delimiter=';')
         writer.writeheader()
         writer.writerow(sender)

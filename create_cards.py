@@ -101,7 +101,7 @@ def create_drsa_cards(data, course, target_path):
     mail_out = "{path}/Mail-{course}.csv".format(
         path=target_path, course=course["id"])
 
-    with open(mail_out, "w", newline='', encoding='utf_8') as csv_out:
+    with open(mail_out, "w", newline='', encoding='utf_8_sig') as csv_out:
         writer = csv.DictWriter(csv_out, fieldnames=mail_info, delimiter=';')
         writer.writeheader()
         writer.writerows(mail_data)
