@@ -63,6 +63,19 @@ exams = {
         "Hilfsmittel zur Wiederbelebung",
         "Theoretische Prüfung",
         "Erste-Hilfe Nachweis",
+    ],
+    "DSTA": [
+        "600m Flossenschwimmen ohne Zeitbegrenzung<br>"
+            "(je 200m Bauch-, Rücken-, Seitenlage)",
+        "200m Flossenschwimmen mit einer Flosse und Armbewegung",
+        "30m Streckentauchen ohne Startsprung",
+        "30 Sekunden Zeittauchen (Festhalten erlaubt)",
+        "In mindestens 3m Tauchtiefe Maske abnehmen, aufsetzen und ausblasen",
+        "3x 3m Tieftauchen in max 1min",
+        "Kombinierte Übung",
+        "Theoretische Prüfung",
+        "Demonstration und Erläuterung der Unterwasserzeichen (Pflichtzeichen)",
+        "Erste-Hilfe Nachweis"
     ]
 }
 
@@ -73,13 +86,21 @@ def create_drsa_cards(data, course, target_path):
                  "time_water", "time_gather", "time_entrance", "contact", "card"]
     mail_data = []
 
-    template = templateEnv.get_template("exam_card.html")
+    template_drsa = templateEnv.get_template("exam_card.html")
+    template_dsta = templateEnv.get_template("exam_card_dsta.html")
 
     for person in data:
-        source_html = template.render(person=person, course=course, req=exams[person["rank"]])
-        html = HTML(string=source_html, base_url="./")
+        if person["rank"] == "DSTA":
+            source_html = template_dsta.render(person=person, course=course, req=exams[person["rank"]])
+            output_filename = "PK-DSTA-" + course["id"] + "-" + person["name_first"] + person[
+                "name_last"] + ".pdf"
+        else:
+            source_html = template_drsa.render(person=person, course=course, req=exams[person["rank"]])
+            output_filename = "PK-DRSA-" + person["rank"] + "-" + course["id"] + "-" + person["name_first"] + \
+                              person[
+                                  "name_last"] + ".pdf"
 
-        output_filename = "PK-DRSA-" + person["rank"] + "-" + course["id"] + "-" + person["name_first"] + person["name_last"] + ".pdf"
+        html = HTML(string=source_html, base_url="./")
 
         html.write_pdf("{path}/{file}".format(path=target_path, file=output_filename))
 
