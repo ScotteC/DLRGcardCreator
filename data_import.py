@@ -7,6 +7,7 @@ def data_from_isc_seminar(filename, ) -> []:
 
     wb = load_workbook(filename=filename)
     sheet = wb['Worksheet']
+    # sheet = wb['Nachrücker']
 
     # Create a dictionary of column names
     columns = {}
@@ -19,7 +20,7 @@ def data_from_isc_seminar(filename, ) -> []:
         data.append({
             "name_last": str(row[columns["Nachname"]]).strip(),
             "name_first": str(row[columns["Vorname"]]).strip(),
-            "birth_date":  row[columns["Geb.Dat"]] if row[columns["Geb.Dat"]] is not None else "",
+            "birth_date":  row[columns["Geb.Dat"]].strftime("%d.%m.%Y") if row[columns["Geb.Dat"]] is not None else "",
             "street": str(row[columns["Strasse"]]).strip() if row[columns["Strasse"]] is not None else "",
             "postcode": str(row[columns["Plz"]]).strip() if row[columns["Plz"]] is not None else "",
             "city": str(row[columns["Ort"]]).strip() if row[columns["Ort"]] is not None else "",
@@ -57,7 +58,7 @@ def data_from_group_register(filename) -> []:
             data.append({
                 "name_last": str(row[columns["Nachname"]]).strip() if row[columns["Nachname"]] is not None else "",
                 "name_first": str(row[columns["Vorname"]]).strip() if row[columns["Vorname"]] is not None else "",
-                "birth_date": row[columns["GebDatum"]] if row[columns["GebDatum"]] is not None else "",
+                "birth_date": row[columns["GebDatum"]].strftime("%d.%m.%Y") if row[columns["GebDatum"]] is not None else "",
                 "street": str(row[columns["Straße"]]).strip() if row[columns["Straße"]] is not None else "",
                 "postcode": str(row[columns["PLZ"]]).strip() if row[columns["PLZ"]] is not None else "",
                 "city": str(row[columns["Wohnort"]]).strip() if row[columns["Wohnort"]] is not None else "",

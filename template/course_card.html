@@ -31,10 +31,48 @@ th, td {
     padding-left: 1mm;
 }
 
+/* single border */
+.bleft {
+    border-left: 1px solid black;
+}
+
+.bright {
+    border-right: 1px solid black;
+}
+
+.btop {
+    border-top: 1px solid black;
+}
+
+.bbottom {
+    border-bottom: 1px solid black;
+}
+
+/* double border */
+.dbleft {
+    border-left: 2px solid black;
+}
+
+.dbright {
+    border-right: 2px solid black;
+}
+
+.dbtop {
+    border-top: 2px solid black;
+}
+
+.dbbottom {
+    border-bottom: 2px solid black;
+}
+
 .middle {
     border-spacing: 0;
     border-left: 2px solid black;
     border-right: 2px solid black;
+}
+
+tr.entry {
+    height: 20px;
 }
 
 .var {
@@ -51,9 +89,9 @@ td.rotate {
 
 td.rotate > div {
   transform:
-    translate(0mm, 32mm)
+    translate(0mm, 35mm)
     rotate(-90deg);
-  width: 10mm;
+  width: 11mm;
 }
 td.rotate > div > span {
 }
@@ -85,14 +123,19 @@ td.rotate > div > span {
     <div id="content" style="position: absolute;">
         <table style="position: absolute; border: 1px solid black;">
             <thead>
-                <tr>
+                <tr class="bleft bright btop bbottom">
                     <th colspan="3">Riegenkarte</th>
-                    <th colspan="16">Deutsches Rettungsschwimmabzeichen - {{rank}} - </th>
+                    <th colspan= {{req|length}} >Deutsches Rettungsschwimmabzeichen - {{rank}} - </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="3" rowspan="2">{{course.id}}<br>{{course.pool}}</td>
+                    <td class="dbleft bright" colspan="3" rowspan="2" style="height: 20px">
+                        <div>
+                            {{course.id}}<br>
+                            {{course.pool}}
+                        </div>
+                    </td>
 
                     {% for i in range(req|length) %}
                     <td>{{i}}</td>
@@ -110,18 +153,33 @@ td.rotate > div > span {
                     <td class="rotate" rowspan="4"><div><span>Eingereicht</span></div></td>
                 </tr>
                 <tr>
-                    <td colspan="3">Ausbilder/Prüfer</td>
+                    <td colspan="3" style="height: 36mm;">
+                        <div>
+                            Ausbilder/Prüfer<br>
+                            trainer 1<br>
+                            trainer 2<br>
+                            <br>
+                            <br>
+                            (Fabian Schöttler, 09/181/056/07)
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan="3">Lehrgang</td>
+                    <td colspan="3" style="height: 20mm">
+                        <div>
+                            Lehrgang<br>
+                            von {{course.start}}<br>
+                            bis {{course.end}}
+                        </div>
+                    </td>
                 </tr>
-                <tr style="max-height: 6mm">
+                <tr>
                     <td style="width: 5mm; height: 6mm;"></td>
-                    <td style="width: 33mm; height: 6mm">Name</td>
-                    <td style="width: 33mm; height: 6mm">Vorname</td>
+                    <td style="width: 33mm;">Name</td>
+                    <td style="width: 33mm;">Vorname</td>
                 </tr>
                 {% for n in range(1,21) %}
-                <tr>
+                <tr class="entry">
                     <td>{{n}}</td>
                     <td>first</td>
                     <td>last</td>

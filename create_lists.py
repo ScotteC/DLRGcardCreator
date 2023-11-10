@@ -75,7 +75,7 @@ def create_stamp_list(data, target_path):
     #     path=target_path,
     #     year=today.year, month=today.month, day=today.day)
 
-    with open(out_nat, "w", newline='', encoding='utf_8_sig') as csv_national:
+    with open(out_nat, "w", newline='', encoding='cp1252') as csv_national:
         writer = csv.DictWriter(csv_national, fieldnames=entry_info, delimiter=';')
         writer.writeheader()
         writer.writerow(sender)
@@ -104,7 +104,7 @@ def create_registration_list(data, course, target_path):
             "Land": person["country"],
             "PLZ": person["postcode"],
             "Wohnort": person["city"],
-            "GebDatum": person["birth_date"],
+            "GebDatum": person["birth_date"],  #.strftime("%d.%m.%Y") if person["birth_date"] is not None else "",
             "GebOrt": "",
             "Telefon": "",
             "E-Mail": "",
