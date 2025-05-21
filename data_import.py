@@ -7,7 +7,7 @@ def data_from_isc_seminar(filename, ) -> []:
 
     wb = load_workbook(filename=filename)
     sheet = wb['Worksheet']
-    # sheet = wb['Nachrücker']
+    # sheet = wb['Junior']
 
     # Create a dictionary of column names
     columns = {}
@@ -26,7 +26,7 @@ def data_from_isc_seminar(filename, ) -> []:
             "city": str(row[columns["Ort"]]).strip() if row[columns["Ort"]] is not None else "",
             "country": "DEU",
             "mail": str(row[columns["E-Mail"]]).strip().lower(),
-            "rank": str(re.findall("Bronze|Silber|Gold", row[columns["Gewünschtes Abzeichen"]])[0]).strip(),
+            "rank": str(re.findall("Junior|Bronze|Silber|Gold", row[columns["Gewünschtes Abzeichen"]])[0]).strip(),
             "repetition": "",
             "first_registration": ""
         })
@@ -37,7 +37,7 @@ def data_from_isc_seminar(filename, ) -> []:
 def data_from_group_register(filename) -> []:
     data = []
 
-    ranks = ["Bronze", "Silber", "Gold", "DSTA"]
+    ranks = ["Junior", "Bronze", "Silber", "Gold", "DSTA"]
 
     wb = load_workbook(filename=filename)
 
@@ -54,11 +54,12 @@ def data_from_group_register(filename) -> []:
             columns[COL[0].value] = index
             index += 1
 
-        for row in sheet.iter_rows(min_row=2, values_only=True):
+        for row in sheet.iter_rows(min_row=2, max_row=50, values_only=True):
             data.append({
                 "name_last": str(row[columns["Nachname"]]).strip() if row[columns["Nachname"]] is not None else "",
                 "name_first": str(row[columns["Vorname"]]).strip() if row[columns["Vorname"]] is not None else "",
-                "birth_date": row[columns["GebDatum"]].strftime("%d.%m.%Y") if row[columns["GebDatum"]] is not None else "",
+                "birth_date": str(row[columns["GebDatum"]]).strip() if row[columns["GebDatum"]] is not None else "",
+                # "birth_date": row[columns["GebDatum"]].strftime("%d.%m.%Y") if row[columns["GebDatum"]] is not None else "",
                 "street": str(row[columns["Straße"]]).strip() if row[columns["Straße"]] is not None else "",
                 "postcode": str(row[columns["PLZ"]]).strip() if row[columns["PLZ"]] is not None else "",
                 "city": str(row[columns["Wohnort"]]).strip() if row[columns["Wohnort"]] is not None else "",

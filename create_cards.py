@@ -7,6 +7,22 @@ templateEnv = jinja2.Environment(loader=templateLoader)
 
 
 exams = {
+    "Junior": [
+        "Theoretische Prüfung",
+        "100m Schwimmen ohne Unterbrechung<br>"
+            "(25m Kraul, 25m Brust, 25m Rückenkraul, 25m Rücken Grätschwung ohne Armtätigkeit)",
+        "25m Schleppen eines Partners mit Achselschleppgriff",
+        "Selbstrettungsübung: Kombinierte Übung in leichter Freizeitbekleidung<br>"
+            "1. Fußwärts ins Wasser springen<br>"
+            "2. 4 Minuten Schweben an der Oberfläche in Rückenlage mit Paddelbewegungen<br>"
+            "3. 6 Minuten Schwimmen mit mindestens 4 Lagenwechseln"
+            "4. Im Wasser entkleiden",
+        "Fremdrettungsübung: Kombinierte Übung<br>"
+            "1. 15 Anschwimmen in Bauchlage<br>"
+            "2. Tieftauchen und 2 kleine Ringe heraufholen<br>"
+            "3. 15m Schleppen mit Achselschleppgriff<br>"
+            "4. Sichern des Geretteten",
+    ],
     "Bronze": [
         "Theoretische Prüfung",
         "200m Schwimmen in max 10min<br>"
@@ -86,6 +102,7 @@ def create_drsa_cards(data, course, target_path):
                  "time_water", "time_gather", "time_entrance", "contact", "card"]
     mail_data = []
 
+    template_junior = templateEnv.get_template("exam_card_junior.html")
     template_drsa = templateEnv.get_template("exam_card.html")
     template_dsta = templateEnv.get_template("exam_card_dsta.html")
 
@@ -93,6 +110,10 @@ def create_drsa_cards(data, course, target_path):
         if person["rank"] == "DSTA":
             source_html = template_dsta.render(person=person, course=course, req=exams[person["rank"]])
             output_filename = "PK-DSTA-" + course["id"] + "-" + person["name_first"] + person[
+                "name_last"] + ".pdf"
+        elif person["rank"] == "Junior":
+            source_html = template_junior.render(person=person, course=course, req=exams[person["rank"]])
+            output_filename = "PK-Junior-" + course["id"] + "-" + person["name_first"] + person[
                 "name_last"] + ".pdf"
         else:
             source_html = template_drsa.render(person=person, course=course, req=exams[person["rank"]])
